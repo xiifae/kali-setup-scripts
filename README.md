@@ -31,3 +31,8 @@ pyenv to `PATH` in `~/.zprofile`.
 | `setup-editors.sh` | full vim and neovim, makes vim the default editor |
 | `setup-proxychains.sh` | proxychains4, made the default `proxychains` |
 | `fix-vmware-dns.sh` | if VMware's NAT hands out a broken resolver, sets up stubby (DNS-over-TLS) and points `/etc/resolv.conf` at it |
+| `pimpmykali.sh` | trimmed fork of [Dewalt-arch/pimpmykali](https://github.com/Dewalt-arch/pimpmykali) |
+
+## Attribution
+
+`pimpmykali.sh` is based on [pimpmykali](https://github.com/Dewalt-arch/pimpmykali) by **Dewalt-arch**, modified to remove functionality that overlaps with the other scripts in this repo.
