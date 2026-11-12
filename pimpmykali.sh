@@ -434,6 +434,8 @@ fix_set() {
 fix_ssh_widecompat() { 
     echo -e "\n  ${greenplus} Setting SSH for wide compatibility"
     eval cp -f /usr/share/kali-defaults/etc/ssh/ssh_config.d/kali-wide-compat.conf /etc/ssh/ssh_config.d/kali-wide-compat.conf
+    # Strip ssh-mldsa44 algorithms that older OpenSSH builds reject (breaks all ssh).
+    eval sed -i "'s/ssh-mldsa44-ed25519-cert-v01@openssh.com,ssh-mldsa44-ed25519@openssh.com,//g'" /etc/ssh/ssh_config.d/kali-wide-compat.conf
     echo -e "${spaces}${greenplus} Restarting SSH service for wide compatibility"
     APP="systemctl"
     FUNCTYPE="restart ssh"

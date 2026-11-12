@@ -20,6 +20,13 @@ if [ "$(systemd-detect-virt)" = vmware ]; then
     sudo apt-get install -y open-vm-tools open-vm-tools-desktop
 fi
 
+# Kali's kali-wide-compat.conf lists ssh-mldsa44 algorithms that older OpenSSH
+# builds reject, which breaks every ssh (and git-over-ssh). Strip them out.
+sshconf=/etc/ssh/ssh_config.d/kali-wide-compat.conf
+if [ -f "$sshconf" ] && grep -q 'ssh-mldsa44-ed25519' "$sshconf"; then
+    sudo sed -i 's/ssh-mldsa44-ed25519-cert-v01@openssh.com,ssh-mldsa44-ed25519@openssh.com,//g' "$sshconf"
+fi
+
 if [ ! -x ~/.pyenv/bin/pyenv ]; then
     curl -fsSL https://pyenv.run | bash
 fi
